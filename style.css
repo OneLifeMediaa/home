@@ -1,15 +1,21 @@
-/* One Life Media — site styles (v2, Cinematic Editorial redesign) */
+/* One-Life Media: site styles (v5, aligned with the blog family) */
 
 :root {
-  --bg: #0b0b0c;
-  --bg-alt: #111113;
-  --text: #f4f3f0;
-  --muted: #a8a7ac;
-  --accent: #fb5b0f;
-  --border: rgba(255,255,255,0.1);
+  /* One-Life Media blog family (see Brand Voice doc) */
+  --bg: #151414;
+  --bg-alt: #000000;
+  --text: #eeeeee;
+  --muted: #9a9a9a;
+  --accent: #ffffff;
+  --content: #1c92e2;
+  --content-light: #7fbae2;
+  --music: #d52c1f;
+  --photos: #eb0012;
+  --border: rgba(255,255,255,0.12);
   --max: 1200px;
-  --font-display: 'Bebas Neue', sans-serif;
-  --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: 'Gruppo', sans-serif;
+  --font-body: Arial, Helvetica, sans-serif;
+  --font-label: 'Courier New', Courier, monospace;
 }
 
 * { box-sizing: border-box; }
@@ -29,15 +35,16 @@ body {
 }
 
 a { color: inherit; text-decoration: none; }
-h1, h2 { line-height: 1.1; margin: 0 0 16px; font-family: var(--font-display); letter-spacing: 0.02em; }
+h1, h2 { line-height: 1.1; margin: 0 0 16px; font-family: var(--font-display); font-weight: 400; letter-spacing: 0.04em; }
 
 .eyebrow {
+  font-family: var(--font-label);
   font-size: 13px;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--muted);
   margin: 0 0 14px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* Header */
@@ -95,7 +102,7 @@ h1, h2 { line-height: 1.1; margin: 0 0 16px; font-family: var(--font-display); l
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(11,11,12,0.55) 0%, rgba(11,11,12,0.35) 40%, rgba(11,11,12,0.97) 96%);
+  background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(21,20,20,0.35) 40%, rgba(21,20,20,0.97) 96%);
 }
 .hero-inner {
   position: relative;
@@ -113,7 +120,7 @@ h1, h2 { line-height: 1.1; margin: 0 0 16px; font-family: var(--font-display); l
 }
 .hero .tagline {
   font-size: clamp(1.05rem, 2vw, 1.5rem);
-  color: #d8d7d3;
+  color: #dddddd;
   max-width: 640px;
   margin: 18px 0 0;
 }
@@ -138,7 +145,7 @@ h1, h2 { line-height: 1.1; margin: 0 0 16px; font-family: var(--font-display); l
   flex: 1 1 480px;
   max-width: 720px;
   font-size: 1.15rem;
-  color: #cfced0;
+  color: #bbbbbb;
   margin: 0;
 }
 
@@ -223,7 +230,7 @@ h1, h2 { line-height: 1.1; margin: 0 0 16px; font-family: var(--font-display); l
 }
 .footer-links a:hover, .footer-social a:hover { color: var(--accent); }
 .copyright {
-  color: #6f6e73;
+  color: #777777;
   font-size: 0.85rem;
   margin: 0;
   width: 100%;

@@ -1,4 +1,4 @@
-/* v4: recent work, approach, inner pages */
+/* pages.css v3: recent work, approach, inner pages, division accents */
 .division-text p + p { margin-top: 0; }
 .division-text em, .about-body em { color: var(--text); font-style: normal; }
 
@@ -38,7 +38,7 @@ div.about-body p { margin: 0 0 18px; }
 .page h2 { font-size: 1.9rem; margin: 48px 0 12px; }
 .page p, .page li { color: #cfced0; font-size: 1.05rem; }
 .page ul { padding-left: 1.2em; }
-.page a { color: var(--accent); border-bottom: 1px solid rgba(251,91,15,.4); }
+.page a { color: var(--accent); border-bottom: 1px solid rgba(255,255,255,.35); }
 .page .updated { color: var(--muted); font-size: .95rem; margin-bottom: 32px; }
 .contact-grid {
   display: grid;
@@ -55,3 +55,27 @@ div.about-body p { margin: 0 0 18px; }
   .wrap { padding: 0 16px; }
   .recent, .approach, .about { padding: 80px 0; }
 }
+
+/* Header and footer bands, as on the blogs */
+.page-header { background: #000000; }
+.site-footer { background: #000000; }
+.hero h1 { font-size: clamp(3rem, 9vw, 7.5rem); }
+.tl-title { font-weight: 700; }
+.tl-no { font-family: var(--font-display); color: var(--muted); }
+.tl-where, .tl-date { font-family: var(--font-label); }
+.signoff { color: var(--muted); font-family: var(--font-label); font-size: .95rem; }
+
+/* Each division wears its own blog's accent */
+#content .eyebrow, #content h2 { color: var(--content-light); }
+#content .cta { border-color: var(--content); }
+#content .cta:hover { color: var(--content); opacity: 1; }
+#music .eyebrow { color: var(--music); }
+#music .cta { border-color: var(--music); }
+#music .cta:hover { color: var(--music); opacity: 1; }
+#photography .eyebrow { color: var(--photos); }
+#photography .cta { border-color: var(--photos); }
+#photography .cta:hover { color: var(--photos); opacity: 1; }
+.tracklist .tl-content .tl-where { color: var(--content); }
+.tracklist .tl-music .tl-where { color: var(--music); }
+.tracklist .tl-photos .tl-where { color: var(--photos); }
+.inline-link { color: var(--text); border-bottom-color: var(--text); }
