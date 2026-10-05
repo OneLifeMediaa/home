@@ -79,3 +79,26 @@ div.about-body p { margin: 0 0 18px; }
 .tracklist .tl-music .tl-where { color: var(--music); }
 .tracklist .tl-photos .tl-where { color: var(--photos); }
 .inline-link { color: var(--text); border-bottom-color: var(--text); }
+
+/* Pricing page */
+.pricing .wrap { max-width: 900px; }
+.pr-group { margin-top: 56px; }
+.pr-group h2 { font-family: var(--font-display); font-size: 2.2rem; margin: 0 0 8px; }
+.pr-group h3 { font-family: var(--font-label); font-size: 1rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 32px 0 8px; }
+.pr-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+.pr-table td { padding: 18px 8px; border-bottom: 1px solid var(--border); vertical-align: top; color: #cccccc; }
+.pr-table strong { color: var(--text); font-size: 1.08rem; }
+.pr-desc { color: var(--muted); font-size: .97rem; }
+.pr-price { text-align: right; white-space: nowrap; font-family: var(--font-label); font-weight: 700; color: var(--text); padding-left: 24px; }
+.pr-small td { padding: 12px 8px; font-size: .97rem; }
+.pr-content .pr-price, .pr-content h2 { color: var(--content-light); }
+.pr-photos .pr-price, .pr-photos h2 { color: var(--photos); }
+.pr-more { margin-top: 16px; }
+.pr-more summary { cursor: pointer; font-family: var(--font-label); color: var(--muted); }
+.pr-steps { padding-left: 1.2em; }
+.pr-steps li { margin-bottom: 10px; }
+@media (max-width: 640px) {
+  .pr-table td { display: block; border-bottom: 0; padding: 4px 0; }
+  .pr-table tr { display: block; border-bottom: 1px solid var(--border); padding: 12px 0; }
+  .pr-price { text-align: left; padding-left: 0; white-space: normal; }
+}
