@@ -15,6 +15,24 @@
     source: 'entry.1488793218'
   };
 
+  // ---- Mailchimp wiring: INBLAQ MAILOUT audience, tagged by brand ----
+  var MC = {
+    url: 'https://us19.list-manage.com/subscribe/post-json?u=1b47bf50bf9f2ce526d70a923&id=c95514fc7f&f_id=00bf6ce7f0',
+    tags: { home: '24299687', content: '24299688', inblaq: '24299689', colourzoo: '24299690' }
+  };
+
+  function mailchimp(email, name, done) {
+    var cb = 'olmMc' + Date.now() + Math.floor(Math.random() * 1000);
+    var finished = false;
+    var s = document.createElement('script');
+    function end(ok, msg) { if (finished) return; finished = true; try { delete window[cb]; } catch (e) { window[cb] = undefined; } if (s.parentNode) s.parentNode.removeChild(s); done(ok, msg); }
+    window[cb] = function (r) { var m = (r && r.msg) || ''; end(r && (r.result === 'success' || /already subscribed/i.test(m)), m); };
+    s.onerror = function () { end(false, ''); };
+    s.src = MC.url + '&EMAIL=' + encodeURIComponent(email) + '&FNAME=' + encodeURIComponent(name) + '&tags=' + (MC.tags[siteKey] || MC.tags.home) + '&c=' + cb;
+    document.head.appendChild(s);
+    setTimeout(function () { end(false, ''); }, 10000);
+  }
+
   var PRIVACY = 'https://one-lifemedia.com/privacy.html';
   var DELAY_MS = 30000;        // show popup after 30 seconds...
   var SCROLL_SHARE = 0.5;      // ...or after half the page is read
@@ -177,16 +195,19 @@
       data.append(FORM.email, email);
       data.append(FORM.name, f.name.value.trim());
       data.append(FORM.source, siteKey + ' / ' + f.getAttribute('data-where') + ' / ' + location.pathname);
-      fetch(FORM.action, { method: 'POST', mode: 'no-cors', body: data })
-        .then(function () {
-          set(KEY + '_done', '1');
-          f.outerHTML = '<p class="olm-su-msg" role="status">' + S.done + '</p>';
-          if (onDone) onDone();
-        })
-        .catch(function () {
-          btn.disabled = false; btn.textContent = S.button;
-          err.textContent = 'That didn\'t go through. Please try again in a moment.';
+      var sheet = fetch(FORM.action, { method: 'POST', mode: 'no-cors', body: data }).then(function () { return true; }, function () { return false; });
+      mailchimp(email, f.name.value.trim(), function (mcOk) {
+        sheet.then(function (sheetOk) {
+          if (mcOk || sheetOk) {
+            set(KEY + '_done', '1');
+            f.outerHTML = '<p class="olm-su-msg" role="status">' + S.done + '</p>';
+            if (onDone) onDone();
+          } else {
+            btn.disabled = false; btn.textContent = S.button;
+            err.textContent = 'That didn\'t go through. Please try again in a moment.';
+          }
         });
+      });
     });
   }
 
