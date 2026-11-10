@@ -7,7 +7,7 @@
   'use strict';
 
   // Paste the Apps Script web app URL here once it is deployed (ends in /exec).
-  var API_URL = '';
+  var API_URL = 'https://script.google.com/macros/s/AKfycbxQy4N_wHcPeZsOwt04MtIpj6d3Ue30HM_iUlM0Uk7HjC1BZOKuavdB2oHtVlbLzRUMnA/exec';
   var PAGE_SIZE = 20;
 
   var listEl = document.getElementById('beat-list');

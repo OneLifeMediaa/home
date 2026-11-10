@@ -75,7 +75,7 @@
 <script>
 (function () {
   // Same Apps Script web app URL as in beats.js (ends in /exec).
-  var API_URL = '';
+  var API_URL = 'https://script.google.com/macros/s/AKfycbxQy4N_wHcPeZsOwt04MtIpj6d3Ue30HM_iUlM0Uk7HjC1BZOKuavdB2oHtVlbLzRUMnA/exec';
   var form = document.getElementById('verify-form'), input = document.getElementById('licence'), out = document.getElementById('verify-out');
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function show(cls, html) { out.className = 'verify-result ' + cls; out.innerHTML = html; out.hidden = false; }
