@@ -38,7 +38,7 @@
       state.beats = d.beats || [];
       state.tiers = d.tiers || [];
       state.live = !!API_URL;
-      if (!state.live) {
+      if (!state.live || !state.beats.length) {
         noticeEl.hidden = false;
         noticeEl.innerHTML = '<strong>Preview.</strong> Licences go on sale soon. Want one now? Email <a href="mailto:info@one-lifemedia.com">info@one-lifemedia.com</a>.';
       }
