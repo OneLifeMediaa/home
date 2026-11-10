@@ -1,0 +1,57 @@
+/* Beats catalogue, licence terms and licence check (InBlaq Music) */
+.beats .wrap { max-width: 1000px; }
+.beats .eyebrow, .beats h2 { color: var(--music); }
+.beats .lede { font-size: 1.2rem; color: var(--text); }
+
+.tier-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 32px 0 8px; }
+.tier-card { border: 1px solid var(--border); background: var(--bg-alt); padding: 20px; }
+.tier-card h3 { margin: 0 0 4px; font-family: var(--font-label); font-size: .95rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.tier-card .tier-price { font-family: var(--font-display); font-size: 2.4rem; color: var(--text); line-height: 1.1; }
+.tier-card p { margin: 6px 0 0; font-size: .97rem; color: var(--muted); }
+
+.beat-tools { display: flex; flex-wrap: wrap; gap: 12px; margin: 40px 0 16px; align-items: center; }
+.beat-tools input, .beat-tools select {
+  background: var(--bg-alt); color: var(--text); border: 1px solid var(--border);
+  padding: 10px 12px; font: inherit; font-size: .97rem; min-width: 0;
+}
+.beat-tools input { flex: 1 1 220px; }
+.beat-tools select { flex: 0 1 170px; }
+.beat-count { color: var(--muted); font-family: var(--font-label); font-size: .9rem; margin: 0 0 8px; }
+
+.beat-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
+.beat { padding: 24px 4px; border-bottom: 1px solid var(--border); }
+.beat-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; }
+.beat-title { font-family: var(--font-display); font-size: 2rem; margin: 0; color: var(--text); letter-spacing: .04em; }
+.beat-meta { font-family: var(--font-label); font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.beat p.beat-desc { margin: 8px 0 12px; }
+.beat-stems { font-size: .9rem; color: var(--muted); margin: 0 0 12px; }
+.beat-player { width: 100%; height: 42px; border: 0; display: block; margin: 0 0 14px; background: transparent; }
+.beat-listen { display: inline-block; margin: 0 0 14px; }
+.beat-buy { display: flex; flex-wrap: wrap; gap: 10px; }
+.page .buy-btn, .buy-btn {
+  background: transparent; color: var(--text); border: 1px solid var(--music); padding: 10px 16px;
+  font: inherit; font-size: .95rem; cursor: pointer; transition: background .2s;
+}
+.buy-btn:hover:not([disabled]) { background: var(--music); }
+.buy-btn[disabled] { opacity: .45; cursor: not-allowed; }
+.buy-btn .bp { font-family: var(--font-label); font-weight: 700; margin-left: 6px; }
+
+.beat-pager { display: flex; justify-content: center; gap: 12px; margin: 28px 0 0; }
+.notice { border: 1px solid var(--border); background: var(--bg-alt); padding: 16px 20px; margin: 24px 0; color: var(--muted); }
+.notice strong { color: var(--text); }
+
+.verify-form { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
+.verify-form input { flex: 1 1 240px; background: var(--bg-alt); color: var(--text); border: 1px solid var(--border); padding: 12px; font: inherit; text-transform: uppercase; }
+.verify-result { border: 1px solid var(--border); padding: 20px; background: var(--bg-alt); }
+.verify-result.ok { border-color: #3c9a5f; }
+.verify-result.bad { border-color: var(--music); }
+.verify-result dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; margin: 12px 0 0; }
+.verify-result dt { color: var(--muted); font-family: var(--font-label); }
+.verify-result dd { margin: 0; color: var(--text); }
+
+.terms-table td:first-child { width: 34%; }
+@media (max-width: 640px) {
+  .beat-title { font-size: 1.6rem; }
+  .beat-tools select { flex: 1 1 45%; }
+  .buy-btn { flex: 1 1 100%; text-align: left; }
+}

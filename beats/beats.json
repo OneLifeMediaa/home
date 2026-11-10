@@ -1,0 +1,123 @@
+{
+ "ok": true,
+ "preview": true,
+ "beats": [
+  {
+   "id": "IBQ-B001",
+   "title": "Dark Bells",
+   "genre": "Hip-Hop",
+   "mood": "Dark",
+   "bpm": "92",
+   "key": "G major",
+   "length": "2:08",
+   "description": "Dark hip-hop beat built on a bell melody and a second, distorted melody over heavy 808 bass, a hard kick and an iron snare.",
+   "stems": "808 Bass, Bells Melody, Gross Melody, Kick, Snare, Hi-Hats, Vox",
+   "bandcampTrackId": "",
+   "bandcampUrl": ""
+  },
+  {
+   "id": "IBQ-B002",
+   "title": "Sizzle",
+   "genre": "R&B",
+   "mood": "Smooth",
+   "bpm": "108",
+   "key": "D minor",
+   "length": "3:06",
+   "description": "Smooth R&B instrumental with strings, bell accents and a warm synth over crisp hi-hats and layered snares.",
+   "stems": "Bass, Bells, Closed Hi-Hats, Hi-Hats, Crash, Drum Roll, Kick, Snare, Snare 2, Strings, Synth",
+   "bandcampTrackId": "",
+   "bandcampUrl": ""
+  },
+  {
+   "id": "IBQ-B003",
+   "title": "Jungle Break",
+   "genre": "Alternative",
+   "mood": "Energetic",
+   "bpm": "96",
+   "key": "E minor",
+   "length": "3:14",
+   "description": "Alternative beat with jungle-style broken drums, piano and chord stabs, and separate lead lines for the verse and the break.",
+   "stems": "Bass, Bass 2, Break Lead, Verse Lead, Chords, Piano, Stabs, Kicks, Rims, Toms, Hi-Hats",
+   "bandcampTrackId": "",
+   "bandcampUrl": ""
+  },
+  {
+   "id": "IBQ-B004",
+   "title": "Just Do It",
+   "genre": "Hip-Hop",
+   "mood": "Minimal",
+   "bpm": "83",
+   "key": "C# minor",
+   "length": "2:13",
+   "description": "Stripped-back hip-hop beat: one melody, bass, kick and claps, with plenty of space for vocals.",
+   "stems": "Bass, Melody, Kick, Claps, Hi-Hats, Closed Cymbal",
+   "bandcampTrackId": "",
+   "bandcampUrl": ""
+  },
+  {
+   "id": "IBQ-B005",
+   "title": "Still Funky",
+   "genre": "Alternative / Funk",
+   "mood": "Funky",
+   "bpm": "108",
+   "key": "G major",
+   "length": "3:32",
+   "description": "Funk-flavoured alternative beat with guitar, chords, high stabs and a whistle hook over hand claps and rim shots.",
+   "stems": "Bass, Bass 2, Chords, Guitar, Melody 1, Melody 2, Hi Pitch Stabs, Whistle, Kick, Hand Claps, Rim Shot, Hi-Hats",
+   "bandcampTrackId": "",
+   "bandcampUrl": ""
+  },
+  {
+   "id": "IBQ-B006",
+   "title": "Truth",
+   "genre": "Hip-Hop / R&B",
+   "mood": "Moody",
+   "bpm": "136",
+   "key": "F# minor",
+   "length": "2:39",
+   "description": "Hip-hop/R&B instrumental with chords, key stabs and a vocal texture layer over hard drums.",
+   "stems": "Bass, Chords, Key Stabs, Melody, Voices, Kick, Snare, Snare 2, Hi-Hats",
+   "bandcampTrackId": "",
+   "bandcampUrl": ""
+  },
+  {
+   "id": "IBQ-B007",
+   "title": "Uptown",
+   "genre": "Dance / EDM",
+   "mood": "Driving",
+   "bpm": "112",
+   "key": "F minor",
+   "length": "3:14",
+   "description": "Dance beat driven by a running synth line, a dark synth melody and a lead synth over kick, snare and crash.",
+   "stems": "Bass, Bass 2, Chords, Dark Synth Melody, Lead Synth, Running Synth, Melody 2, Kick, Snare, Hi-Hats, Closed Cymbal, Crash",
+   "bandcampTrackId": "",
+   "bandcampUrl": ""
+  }
+ ],
+ "tiers": [
+  {
+   "id": "wav",
+   "name": "WAV lease",
+   "price": 30,
+   "streamCap": 100000,
+   "files": "WAV",
+   "exclusive": false
+  },
+  {
+   "id": "stems",
+   "name": "Stems lease",
+   "price": 75,
+   "streamCap": 500000,
+   "files": "WAV + stems",
+   "exclusive": false
+  },
+  {
+   "id": "exclusive",
+   "name": "Exclusive",
+   "price": 300,
+   "streamCap": "Unlimited",
+   "files": "WAV + stems",
+   "exclusive": true
+  }
+ ]
+}
