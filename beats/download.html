@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download Your Beat | InBlaq Music | One-Life Media</title>
+<meta name="description" content="Download the files for your InBlaq Music beat licence. Enter your licence number and the email you paid with.">
+<link rel="canonical" href="https://one-lifemedia.com/beats/download.html">
+<link rel="shortcut icon" href="/images/home-favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css?v=5">
+<link rel="stylesheet" href="/pages.css?v=5">
+<link rel="stylesheet" href="/beats/beats.css?v=1">
+<meta name="robots" content="noindex">
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7480442972731216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header page-header">
+<div class="wrap">
+<a class="brand" href="/"><img class="brand-logo" src="/images/one-life-media-logo.png" alt="One-Life Media" width="451" height="400"></a>
+<nav class="site-nav" aria-label="Primary">
+<a href="/#content">Content</a>
+<a href="/#music">Music</a>
+<a href="/beats/">Beats</a>
+<a href="/#photography">Photography</a>
+<a href="/journal/">Journal</a>
+<a href="/pricing.html">Pricing</a>
+<a href="/contact.html">Contact</a>
+</nav>
+</div>
+</header>
+
+<main class="page beats">
+<div class="wrap">
+<p class="eyebrow"><a href="/beats/">Beats</a></p>
+<h1>Download your files</h1>
+<p>Your licence number is your download code. It's at the top of your licence PDF and in your confirmation email, for example IBQ-2026-0001. Enter it with the email address you paid with.</p>
+<form class="verify-form" id="dl-form">
+<input id="licence" name="l" placeholder="Licence number, e.g. IBQ-2026-0001" aria-label="Licence number" autocomplete="off" required>
+<input id="email" name="e" type="email" placeholder="Email you paid with" aria-label="Email address" autocomplete="email" required style="text-transform:none">
+<button class="buy-btn" type="submit">Get my files</button>
+</form>
+<div class="verify-result" id="dl-out" hidden aria-live="polite"></div>
+<p>A WAV lease includes the untagged WAV. A stems lease or exclusive includes the WAV and every stem. Please keep your files and licence private: sharing them breaks the licence terms.</p>
+<p>See the <a href="/beats/licence-terms.html">licence terms</a> or <a href="/beats/">browse the beats</a>.</p>
+</div>
+</main>
+
+<footer class="site-footer">
+<div class="wrap footer-inner">
+<div class="footer-brand">One-Life Media</div>
+<div class="footer-links">
+<a href="https://content.one-lifemedia.com/">Content</a>
+<a href="https://music.one-lifemedia.com/">Music</a>
+<a href="/beats/">Beats</a>
+<a href="https://photos.one-lifemedia.com/">Photography</a>
+<a href="/journal/">Journal</a>
+<a href="/pricing.html">Pricing</a>
+<a href="/contact.html">Contact</a>
+<a href="/privacy.html">Privacy</a>
+</div>
+<div class="footer-social" aria-label="Social media">
+<a href="https://twitter.com/onelifemedia" aria-label="Twitter / X">Twitter</a>
+<a href="https://www.facebook.com/oLifeMedia/" aria-label="Facebook">Facebook</a>
+<a href="https://www.instagram.com/olm_insta/" aria-label="Instagram">Instagram</a>
+<a href="https://www.tiktok.com/@olmcontent" aria-label="TikTok">TikTok</a>
+<a href="https://uk.pinterest.com/onelifemedia/" aria-label="Pinterest">Pinterest</a>
+</div>
+<p class="copyright">&copy; <span id="year"></span> One-Life Media, Joseph Wright</p>
+</div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>
+(function () {
+  var API_URL = 'https://script.google.com/macros/s/AKfycbxQy4N_wHcPeZsOwt04MtIpj6d3Ue30HM_iUlM0Uk7HjC1BZOKuavdB2oHtVlbLzRUMnA/exec';
+  var form = document.getElementById('dl-form'), lic = document.getElementById('licence'), em = document.getElementById('email'), out = document.getElementById('dl-out');
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function show(cls, html) { out.className = 'verify-result ' + cls; out.innerHTML = html; out.hidden = false; }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var no = lic.value.trim().toUpperCase(), mail = em.value.trim();
+    if (!no || !mail) return;
+    show('', '<p>Checking your licence…</p>');
+    fetch(API_URL + '?action=download&l=' + encodeURIComponent(no) + '&e=' + encodeURIComponent(mail)).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d.found) { show('bad', '<p><strong>We couldn\'t match that licence number and email.</strong> Use the number on your licence PDF and the email address you paid with. Still stuck? Email info@one-lifemedia.com.</p>'); return; }
+      if (!d.valid) { show('bad', '<p><strong>This licence isn\'t active.</strong> Please email info@one-lifemedia.com.</p>'); return; }
+      var links = (d.files || []).map(function (f) {
+        return f.url ? '<p><a class="buy-btn" href="' + esc(f.url) + '" target="_blank" rel="noopener">Open ' + esc(f.label) + ' folder</a></p>'
+                     : '<p>' + esc(f.label) + ': being prepared. We\'ll email it to you shortly.</p>';
+      }).join('');
+      show('ok', '<p><strong>' + esc(d.beat) + ' – ' + esc(d.tier) + '</strong> (licence ' + esc(d.licenceNo) + ')' + (d.test ? ' · test sale' : '') + '</p>' + links +
+        '<p>Each folder opens in Google Drive. Click <strong>Download</strong> (top right) to save every file at once.</p>');
+    }).catch(function () { show('bad', '<p>Something went wrong. Please try again in a minute.</p>'); });
+  });
+  var p = new URLSearchParams(location.search).get('l');
+  if (p) { lic.value = p; em.focus(); }
+})();
+</script>
+</body>
+</html>
