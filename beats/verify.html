@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check a Beat Licence | InBlaq Music | One-Life Media</title>
+<meta name="description" content="Check that an InBlaq Music beat licence is genuine. Enter the licence number, for example IBQ-2026-0001.">
+<link rel="canonical" href="https://one-lifemedia.com/beats/verify.html">
+<link rel="shortcut icon" href="/images/home-favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css?v=5">
+<link rel="stylesheet" href="/pages.css?v=5">
+<link rel="stylesheet" href="/beats/beats.css?v=1">
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7480442972731216" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header page-header">
+<div class="wrap">
+<a class="brand" href="/"><img class="brand-logo" src="/images/one-life-media-logo.png" alt="One-Life Media" width="451" height="400"></a>
+<nav class="site-nav" aria-label="Primary">
+<a href="/#content">Content</a>
+<a href="/#music">Music</a>
+<a href="/beats/">Beats</a>
+<a href="/#photography">Photography</a>
+<a href="/journal/">Journal</a>
+<a href="/pricing.html">Pricing</a>
+<a href="/contact.html">Contact</a>
+</nav>
+</div>
+</header>
+
+<main class="page beats">
+<div class="wrap">
+<p class="eyebrow"><a href="/beats/">Beats</a></p>
+<h1>Check a licence</h1>
+<p>Every InBlaq Music beat licence has its own number, printed at the top of the licence PDF. Enter it below to confirm the licence is genuine and see what it covers.</p>
+<form class="verify-form" id="verify-form">
+<input id="licence" name="l" placeholder="IBQ-2026-0001" aria-label="Licence number" autocomplete="off" required>
+<button class="buy-btn" type="submit">Check licence</button>
+</form>
+<div class="verify-result" id="verify-out" hidden aria-live="polite"></div>
+<p>Distributors, playlist curators and video platforms sometimes ask for proof that a beat was licensed. You can send them a link to this page with the number filled in, for example <code>one-lifemedia.com/beats/verify.html?l=IBQ-2026-0001</code>.</p>
+<p>See the <a href="/beats/licence-terms.html">licence terms</a> or <a href="/beats/">browse the beats</a>.</p>
+</div>
+</main>
+
+<footer class="site-footer">
+<div class="wrap footer-inner">
+<div class="footer-brand">One-Life Media</div>
+<div class="footer-links">
+<a href="https://content.one-lifemedia.com/">Content</a>
+<a href="https://music.one-lifemedia.com/">Music</a>
+<a href="/beats/">Beats</a>
+<a href="https://photos.one-lifemedia.com/">Photography</a>
+<a href="/journal/">Journal</a>
+<a href="/pricing.html">Pricing</a>
+<a href="/contact.html">Contact</a>
+<a href="/privacy.html">Privacy</a>
+</div>
+<div class="footer-social" aria-label="Social media">
+<a href="https://twitter.com/onelifemedia" aria-label="Twitter / X">Twitter</a>
+<a href="https://www.facebook.com/oLifeMedia/" aria-label="Facebook">Facebook</a>
+<a href="https://www.instagram.com/olm_insta/" aria-label="Instagram">Instagram</a>
+<a href="https://www.tiktok.com/@olmcontent" aria-label="TikTok">TikTok</a>
+<a href="https://uk.pinterest.com/onelifemedia/" aria-label="Pinterest">Pinterest</a>
+</div>
+<p class="copyright">&copy; <span id="year"></span> One-Life Media, Joseph Wright</p>
+</div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>
+(function () {
+  // Same Apps Script web app URL as in beats.js (ends in /exec).
+  var API_URL = 'https://script.google.com/macros/s/AKfycbxQy4N_wHcPeZsOwt04MtIpj6d3Ue30HM_iUlM0Uk7HjC1BZOKuavdB2oHtVlbLzRUMnA/exec';
+  var form = document.getElementById('verify-form'), input = document.getElementById('licence'), out = document.getElementById('verify-out');
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function show(cls, html) { out.className = 'verify-result ' + cls; out.innerHTML = html; out.hidden = false; }
+  function check(no) {
+    no = no.trim().toUpperCase();
+    if (!no) return;
+    if (!API_URL) { show('bad', '<p>Licence checks open when licences go on sale. Email info@one-lifemedia.com in the meantime.</p>'); return; }
+    show('', '<p>Checking…</p>');
+    fetch(API_URL + '?action=verify&l=' + encodeURIComponent(no)).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d.found) { show('bad', '<p><strong>No licence found for ' + esc(no) + '.</strong> Check the number on the licence PDF, or email info@one-lifemedia.com.</p>'); return; }
+      var valid = d.status === 'valid';
+      show(valid ? 'ok' : 'bad', '<p><strong>' + (valid ? 'Genuine licence' : 'Licence not valid') + (d.test ? ' (test sale)' : '') + '</strong></p><dl>' +
+        '<dt>Licence</dt><dd>' + esc(d.licenceNo) + '</dd><dt>Beat</dt><dd>' + esc(d.beat) + '</dd><dt>Type</dt><dd>' + esc(d.tier) + '</dd>' +
+        '<dt>Stream limit</dt><dd>' + esc(d.streamCap) + '</dd><dt>Artist</dt><dd>' + esc(d.artist) + '</dd><dt>Issued</dt><dd>' + esc(d.date) + '</dd>' +
+        (valid ? '' : '<dt>Status</dt><dd>' + esc(d.status) + '</dd>') + '</dl>');
+    }).catch(function () { show('bad', '<p>The check could not be completed just now. Please try again.</p>'); });
+  }
+  form.addEventListener('submit', function (e) { e.preventDefault(); check(input.value); });
+  var p = new URLSearchParams(location.search).get('l');
+  if (p) { input.value = p; check(p); }
+})();
+</script>
+</body>
+</html>
