@@ -26,7 +26,7 @@
   </url>
   <url>
     <loc>https://one-lifemedia.com/journal/</loc>
-    <lastmod>2026-10-05</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -68,5 +68,17 @@
   </url>
   <url>
     <loc>https://one-lifemedia.com/beats/verify.html</loc>
+  </url>
+  <url>
+    <loc>https://one-lifemedia.com/journal/human-made-beats-vs-ai-beats.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://one-lifemedia.com/journal/non-exclusive-beats-can-succeed.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
