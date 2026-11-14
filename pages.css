@@ -122,3 +122,4 @@ div.about-body p { margin: 0 0 18px; }
   .site-nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px 14px; }
   .site-nav a { margin-left: 0; }
 }
+.article-figure-full img { max-height: none; object-fit: contain; }
