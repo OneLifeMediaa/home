@@ -1,0 +1,4 @@
+{
+  "_note": "Streaming players shown under each beat on /beats. Key = Beat ID from the Beats sheet. Add the Spotify track ID (the part after /track/ in the link) once a beat is live on Spotify.",
+  "IBQ-B001": { "title": "Dark Bells", "spotifyTrackId": "", "appleMusicUrl": "", "releaseDate": "2026-12-18" }
+}
