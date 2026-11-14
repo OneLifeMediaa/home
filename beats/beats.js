@@ -21,7 +21,7 @@
   var fMood = document.getElementById('f-mood');
   var fSort = document.getElementById('f-sort');
 
-  var state = { beats: [], tiers: [], live: false, page: 0 };
+  var state = { beats: [], tiers: [], live: false, page: 0, streams: {} };
 
   function esc(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
@@ -30,6 +30,12 @@
   }
   function money(n) { n = Number(n); return '£' + (n % 1 ? n.toFixed(2) : n); }
   function cap(t) { return t.exclusive ? 'unlimited streams' : Number(t.streamCap).toLocaleString('en-GB') + ' streams'; }
+
+  // Spotify / Apple Music links for beats that are released on streaming (beats/streaming.json).
+  function loadStreams() {
+    return fetch('streaming.json').then(function (r) { return r.ok ? r.json() : {}; })
+      .then(function (d) { state.streams = d || {}; }).catch(function () { state.streams = {}; });
+  }
 
   function load() {
     var url = API_URL ? API_URL + '?action=catalogue' : 'beats.json';
@@ -44,7 +50,7 @@
       }
       fillFilters();
       renderTiers();
-      render();
+      loadStreams().then(render);
     }).catch(function () {
       listEl.innerHTML = '';
       noticeEl.hidden = false;
@@ -95,6 +101,13 @@
       ? '<iframe class="beat-player" loading="lazy" title="Listen to ' + esc(b.title) + '" src="https://bandcamp.com/EmbeddedPlayer/track=' +
         encodeURIComponent(b.bandcampTrackId) + '/size=small/bgcol=151414/linkcol=d52c1f/transparent=true/"></iframe>'
       : (b.bandcampUrl ? '<a class="beat-listen" href="' + esc(b.bandcampUrl) + '" rel="noopener">Listen on Bandcamp</a>' : '');
+    var st = state.streams[b.id] || {};
+    var spotifyId = b.spotifyTrackId || st.spotifyTrackId;
+    var appleUrl = b.appleMusicUrl || st.appleMusicUrl;
+    var stream = spotifyId
+      ? '<div class="embed beat-stream" data-provider="spotify" data-type="track" data-id="' + esc(spotifyId) + '" data-title="Also on Spotify: ' + esc(b.title) + '" data-height="80"></div>'
+      : '';
+    if (appleUrl) stream += '<p class="beat-stems"><a href="' + esc(appleUrl) + '" rel="noopener">Also on Apple Music</a></p>';
     var buttons = state.tiers.map(function (t) {
       return '<button class="buy-btn" data-beat="' + esc(b.id) + '" data-tier="' + esc(t.id) + '"' + (state.live ? '' : ' disabled') +
         '>' + esc(t.name) + '<span class="bp">' + money(t.price) + '</span></button>';
@@ -103,7 +116,7 @@
       '<span class="beat-meta">' + [b.genre, b.mood, b.bpm ? b.bpm + ' BPM' : '', b.key, b.length].filter(Boolean).map(esc).join(' · ') + '</span></div>' +
       '<p class="beat-desc">' + esc(b.description) + '</p>' +
       (b.stems ? '<p class="beat-stems">Stems: ' + esc(b.stems) + '</p>' : '') +
-      player + '<div class="beat-buy">' + buttons + '</div></li>';
+      player + stream + '<div class="beat-buy">' + buttons + '</div></li>';
   }
 
   function render() {
@@ -118,6 +131,7 @@
         '<span class="beat-meta">Page ' + (state.page + 1) + ' of ' + pages + '</span>' +
         '<button class="buy-btn" data-page="1"' + (state.page < pages - 1 ? '' : ' disabled') + '>Next</button>'
       : '';
+    if (window.olmEmbeds) window.olmEmbeds.init(listEl);
   }
 
   function buy(btn) {

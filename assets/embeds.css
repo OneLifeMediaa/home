@@ -1,0 +1,20 @@
+/* Click-to-load music players */
+.embed { border: 1px solid var(--border, rgba(255,255,255,.12)); background: var(--bg-alt, #000); margin: 0 0 16px; border-radius: 12px; overflow: hidden; }
+.embed iframe { display: block; width: 100%; border: 0; }
+.embed.embed-on { border: 0; background: transparent; }
+.embed-ph { padding: 24px 20px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.embed-title { margin: 0; font-size: 1.15rem; color: var(--text, #f0f0f0); }
+.embed-play { background: var(--music, #d52c1f); color: #fff; border: 0; padding: 12px 20px; font: inherit; font-size: 1rem; cursor: pointer; border-radius: 999px; }
+.embed-play:hover { opacity: .85; }
+.embed-note { margin: 0; font-size: .85rem; color: var(--muted, #9a9a9a); }
+.embed-always { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline; cursor: pointer; }
+.listen-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 24px; }
+.listen-grid .embed { margin: 0; }
+.listen-links { margin-top: 16px; color: var(--muted, #9a9a9a); }
+.listen-links a { color: var(--text, #f0f0f0); }
+.beat-stream { margin: -4px 0 14px; }
+.beat-stream .embed-ph { padding: 12px 14px; flex-direction: row; flex-wrap: wrap; align-items: center; }
+.beat-stream .embed-title { font-size: .95rem; }
+.beat-stream .embed-play { padding: 8px 14px; font-size: .9rem; }
+.beat .beat-stream .embed-note, .beat .beat-stream .embed-title { margin: 0; }
+.beat .beat-stream .embed-note { font-size: .8rem; }
