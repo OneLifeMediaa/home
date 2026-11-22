@@ -1,4 +1,5 @@
 {
   "_note": "Streaming players shown under each beat on /beats. Key = Beat ID from the Beats sheet. Add the Spotify track ID (the part after /track/ in the link) once a beat is live on Spotify.",
-  "IBQ-B001": { "title": "Dark Bells", "spotifyTrackId": "", "appleMusicUrl": "", "releaseDate": "2026-12-18" }
+  "IBQ-B001": { "title": "Dark Bells", "spotifyTrackId": "", "appleMusicUrl": "", "releaseDate": "2026-12-18" },
+  "IBQ-B008": { "title": "Dying In My Prime", "spotifyTrackId": "4Obqs1A1LRM5OWRQunUNIY", "appleMusicUrl": "https://music.apple.com/gb/album/dying-in-my-prime-instrumental/1800371744?i=1800371745", "releaseDate": "2025-03-05" }
 }
