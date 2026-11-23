@@ -108,7 +108,8 @@
       ? '<div class="embed beat-stream" data-provider="spotify" data-type="track" data-id="' + esc(spotifyId) + '" data-title="Also on Spotify: ' + esc(b.title) + '" data-height="80"></div>'
       : '';
     if (appleUrl) stream += '<p class="beat-stems"><a href="' + esc(appleUrl) + '" rel="noopener">Also on Apple Music</a></p>';
-    var buttons = state.tiers.map(function (t) {
+    var nonExclusive = b.exclusiveOk === false;
+    var buttons = state.tiers.filter(function (t) { return !(t.exclusive && nonExclusive); }).map(function (t) {
       return '<button class="buy-btn" data-beat="' + esc(b.id) + '" data-tier="' + esc(t.id) + '"' + (state.live ? '' : ' disabled') +
         '>' + esc(t.name) + '<span class="bp">' + money(t.price) + '</span></button>';
     }).join('');
@@ -116,7 +117,9 @@
       '<span class="beat-meta">' + [b.genre, b.mood, b.bpm ? b.bpm + ' BPM' : '', b.key, b.length].filter(Boolean).map(esc).join(' · ') + '</span></div>' +
       '<p class="beat-desc">' + esc(b.description) + '</p>' +
       (b.stems ? '<p class="beat-stems">Stems: ' + esc(b.stems) + '</p>' : '') +
-      player + stream + '<div class="beat-buy">' + buttons + '</div></li>';
+      player + stream + '<div class="beat-buy">' + buttons + '</div>' +
+      (nonExclusive ? '<p class="beat-stems beat-nonex">Non-exclusive only: this beat is already on a released song, so WAV and stems leases are available but not an exclusive.</p>' : '') +
+      '</li>';
   }
 
   function render() {
